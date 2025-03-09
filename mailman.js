@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import chalk from 'chalk';
 import {program} from "commander"
 import loading from "loading-cli"
@@ -25,8 +27,12 @@ log.error = function(message) {
   log(chalk.red('Error message: ', message));
 }
 
+log.secondary = function(message) {
+  log(chalk.black.bgWhite.bold(message));
+}
+
 log.info = function(message) {
-  log(chalk.black.bgGreen.bold(message));
+  log(`\n${chalk.black.bgGreen.bold(message)}`);
 }
 
 log.warn = function(message) {
@@ -98,7 +104,9 @@ async function main() {
       body: JSON.stringify(body)
     });
     const data = await response.text();
-    log.info(`\n${data}`);
+
+    log.info(`\nStatus: ${response.status}`)
+    log.secondary(`Response: ${data}`);
   }
   catch(e) {
     log.error("Request failed!");
