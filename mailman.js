@@ -24,7 +24,7 @@ const availableMethods = new Set(methods);
 
 const log = console.log;
 log.error = function(message) {
-  log(chalk.red('Error message: ', message));
+  log(chalk.red(message));
 }
 
 log.secondary = function(message) {
@@ -104,8 +104,15 @@ async function main() {
       body: JSON.stringify(body)
     });
     const data = await response.text();
+    const statusCode = response.status;
+    
+    if(statusCode >= 400) {
+      log.error(`\nStatus: ${response.status}`)
+    }
+    else {
+      log.info(`\nStatus: ${response.status}`)
+    }
 
-    log.info(`\nStatus: ${response.status}`)
     log.secondary(`Response: ${data}`);
   }
   catch(e) {
