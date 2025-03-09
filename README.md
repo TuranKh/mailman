@@ -22,7 +22,9 @@ npm install
 Run the CLI tool with the following syntax:
 
 ```bash
-node index.js [options] <name> <url>
+node mailman.js [options] <name> <url>
+# or
+./mailman.js [options] <name> <url> 
 ```
 
 ### Options
@@ -34,10 +36,10 @@ node index.js [options] <name> <url>
 
 ```bash
 # Simple GET request
-node index.js GET https://example.com
+node mailman.js GET https://example.com
 
 # POST request with headers and body
-node index.js POST https://example.com -h '{"Content-Type":"application/json"}' -b '{"key":"value"}'
+node mailman.js POST https://example.com -h '{"Content-Type":"application/json"}' -b '{"key":"value"}'
 ```
 
 ### Testing
